@@ -1,4 +1,4 @@
-#Deploying Selenium Grid on Docker Swarm :whale: 
+# Deploying Selenium Grid on Docker Swarm :whale: 
 
 We wrote two scripts, create.sh and destroy.sh.
 **The create.sh will**
@@ -17,7 +17,7 @@ We wrote two scripts, create.sh and destroy.sh.
 - shut down the EC2 resources
 - disassociate elastic ip
 
-###How to run
+### How to run
 - sh ./create.sh to create selenium grid
 - sh ./destroy.sh to destroy selenium grid
 
