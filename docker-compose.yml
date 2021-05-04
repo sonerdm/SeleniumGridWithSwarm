@@ -1,0 +1,57 @@
+version: '3.8'
+
+networks:
+  grid:
+    driver: overlay
+
+services:
+
+  hub:
+    image: selenium/hub:3.141.59
+    environment:
+      - GRID_TIMEOUT=100 
+    ports:
+      - 4444:4444
+    networks:
+      - grid
+    deploy:
+      mode: replicated
+      replicas: 1
+      labels:
+        selenium.grid.type: "hub"
+        selenium.grid.hub: "true"
+      restart_policy:
+        condition: none
+      placement:
+        constraints:
+          - node.role == manager
+
+  chrome:
+    image: selenium/node-chrome:3.141.59
+    volumes:
+      - /dev/urandom:/dev/random
+      - /dev/shm:/dev/shm
+    depends_on:
+      - hub
+    networks:
+      - grid
+    environment:
+      - HUB_PORT_4444_TCP_ADDR=hub
+      - HUB_PORT_4444_TCP_PORT=4444
+      - NODE_MAX_SESSION=3
+      - NODE_MAX_INSTANCES=3
+      - GRID_TIMEOUT=180
+      - SCREEN_WIDTH=1920
+      - SCREEN_HEIGHT=1080
+    entrypoint: bash -c 'SE_OPTS="-host $$HOSTNAME" /opt/bin/entry_point.sh'
+    deploy:
+      replicas: 8
+      labels:
+        selenium.grid.type: "node"
+        selenium.grid.node: "true"
+        selenium.grid.node.type: "chrome"
+      restart_policy:
+        condition: none
+      placement:
+        constraints:
+          - node.role == worker
