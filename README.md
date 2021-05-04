@@ -1,6 +1,6 @@
 # Deploying Selenium Grid on Docker Swarm :whale: 
 
-We wrote two scripts, create.sh and destroy.sh.
+We wrote two scripts, create.sh and destroy.sh. \
 **The create.sh will**
 
 - check related swarm is up, if not continue
@@ -21,6 +21,6 @@ We wrote two scripts, create.sh and destroy.sh.
 - sh ./create.sh to create selenium grid
 - sh ./destroy.sh to destroy selenium grid
 
-You can read the below links for a detailed explanation
-[testdriven.io](https://testdriven.io/blog/distributed-testing-with-selenium-grid/)
+You can read the below links for a detailed explanation \
+[testdriven.io](https://testdriven.io/blog/distributed-testing-with-selenium-grid/) \
 [qxf2.com](https://qxf2.com/blog/automating-the-setup-for-cloud-based-testing-with-selenium-grid-and-docker-swarm/)
